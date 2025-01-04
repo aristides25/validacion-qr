@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
 import supabase from '../lib/supabaseClient'
 
-const VERCEL_URL = 'https://tu-app.vercel.app' // Cambia esto por tu URL de Vercel
+const VERCEL_URL = 'https://validacion-qr.vercel.app'
 
 export default function QRGenerator() {
   const [workers, setWorkers] = useState([])
