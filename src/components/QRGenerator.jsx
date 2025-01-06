@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
+import { toPng } from 'html-to-image'
 import supabase from '../lib/supabaseClient'
 
 const VERCEL_URL = 'https://validacion-qr.vercel.app'
@@ -7,6 +8,17 @@ const VERCEL_URL = 'https://validacion-qr.vercel.app'
 export default function QRGenerator() {
   const [workers, setWorkers] = useState([])
   const [loading, setLoading] = useState(false)
+
+  const downloadQR = async (workerId, workerName) => {
+    const element = document.getElementById(`qr-${workerId}`)
+    if (element) {
+      const dataUrl = await toPng(element)
+      const link = document.createElement('a')
+      link.download = `qr-${workerName.toLowerCase().replace(/\s+/g, '-')}.png`
+      link.href = dataUrl
+      link.click()
+    }
+  }
 
   async function loadWorkers() {
     setLoading(true)
@@ -51,14 +63,21 @@ export default function QRGenerator() {
             <div key={worker.id} className="qr-card">
               <h3>{worker.full_name}</h3>
               <p>Ubicación: {worker.location}</p>
-              <QRCodeSVG 
-                value={`${VERCEL_URL}/validate/${worker.qr_code}`}
-                size={200}
-                level="H"
-                includeMargin={true}
-              />
+              <div id={`qr-${worker.id}`}>
+                <QRCodeSVG 
+                  value={`${VERCEL_URL}/validate/${worker.qr_code}`}
+                  size={200}
+                  level="H"
+                  includeMargin={true}
+                />
+              </div>
               <p>Código: {worker.qr_code}</p>
-              <button onClick={() => window.print()}>Imprimir QR</button>
+              <div className="button-group">
+                <button onClick={() => window.print()}>Imprimir QR</button>
+                <button onClick={() => downloadQR(worker.id, worker.full_name)}>
+                  Descargar PNG
+                </button>
+              </div>
             </div>
           ))}
         </div>
