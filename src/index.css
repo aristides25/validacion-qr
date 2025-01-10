@@ -117,3 +117,77 @@ p {
 .button-group button:hover {
   background: #0056b3;
 }
+
+/* Estilos para la página de validación */
+.validation-container {
+  min-height: 100vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  margin: 20px 0;
+}
+
+.validation-result {
+  width: 90%;
+  max-width: 500px;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.valid-title {
+  color: #007bff;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.invalid-title {
+  color: #dc3545;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.message {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+.worker-info {
+  background-color: #f8f9fa;
+  border-left: 4px solid #007bff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.worker-info p {
+  margin: 10px 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.worker-info strong {
+  color: #007bff;
+}
+
+.loading {
+  text-align: center;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loading h2 {
+  color: #007bff;
+  font-size: 1.5rem;
+}
